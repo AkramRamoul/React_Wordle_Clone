@@ -5,6 +5,7 @@ import Keyboard from "./Components/Keyboard";
 import { createContext, useEffect, useState } from "react";
 export const AppContext = createContext();
 import { boardDefault, generateWordSet } from "./assets/BoardDefault";
+
 function App() {
   const [board, setBoard] = useState(boardDefault);
   const [showAlert, setShowAlert] = useState(false);
@@ -22,16 +23,18 @@ function App() {
     generateWordSet().then((words) => {
       console.log(words.todaysWord);
       setWordSet(words.wordSet);
-      setCurrWord(words.todaysWord);
+      setCurrWord(words.todaysWord.toUpperCase()); // Ensure correctword is uppercase
     });
   }, []);
+
   const onSelectLetter = (keyval) => {
     if (currAttempt.letterPos > 4) return;
     const newBoard = [...board];
-    newBoard[currAttempt.attempt][currAttempt.letterPos] = keyval;
+    newBoard[currAttempt.attempt][currAttempt.letterPos] = keyval.toUpperCase(); // Ensure letter is uppercase
     setCurrAttempt({ ...currAttempt, letterPos: currAttempt.letterPos + 1 });
     setBoard(newBoard);
   };
+
   const onDelete = () => {
     if (currAttempt.letterPos === 0) return;
     const newBoard = [...board];
@@ -74,7 +77,7 @@ function App() {
       return;
     }
 
-    if (newWord === correctword) {
+    if (newWord === correctword.toLowerCase()) {
       setGameOver(true);
       setAlertMessage("You win");
       setShowAlert(true);
@@ -96,6 +99,7 @@ function App() {
       return;
     }
   };
+
   return (
     <div className="App">
       <h1>Wordle</h1>

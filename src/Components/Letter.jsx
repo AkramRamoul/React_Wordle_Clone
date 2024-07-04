@@ -10,19 +10,21 @@ const Letter = ({ letterPos, attemptVal }) => {
     gameOver,
     shake,
   } = useContext(AppContext);
-  const isDisabled = gameOver;
+
   const letter = board[attemptVal][letterPos];
   const correct = correctword.toUpperCase()[letterPos] === letter;
-  const almost = !correct && letter !== "" && correctword.includes(letter);
+  const almost =
+    !correct && letter !== "" && correctword.toUpperCase().includes(letter);
+
   const letterState =
     currAttempt.attempt > attemptVal &&
     (correct ? "correct" : almost ? "almost" : "error");
 
   useEffect(() => {
     if (letter !== "" && !correct && !almost) {
-      setDisabledLetters((prev) => [...prev, letter]);
+      setDisabledLetters((prev) => [...new Set([...prev, letter])]);
     }
-  }, [currAttempt.attempt]);
+  }, [letter, correct, almost, currAttempt.attempt, setDisabledLetters]);
 
   return (
     <input
@@ -31,12 +33,12 @@ const Letter = ({ letterPos, attemptVal }) => {
       } `}
       value={letter}
       id={letterState}
-      disabled={isDisabled}
+      disabled={gameOver}
       style={{
         textAlign: "center",
         userSelect: "none",
-        pointerEvents: "none",
       }}
+      readOnly
     />
   );
 };
