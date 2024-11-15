@@ -1,8 +1,43 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Wordle Clone
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A React-based implementation of the popular word puzzle game Wordle. This application provides an engaging word-guessing experience with customizable game logic and sleek design.
+
+
+
+
+## Features
+
+- Interactive Gameplay: Guess the word within a limited number of attempts.
+- Dynamic Feedback: Letters turn green, yellow, or gray to indicate correctness and position.
+- Customizable Game Logic: Easily adapt the word list or rules.
+- Keyboard Input: Virtual keyboard for intuitive gameplay.
+
+## Installation
+
+Install my-project with npm
+
+```bash
+git clone https://github.com/AkramRamoul/React_Wordle_Clone.git
+
+cd React_Wordle_Clone
+
+npm install
+
+npm run dev
+
+
+
+```
+    
+## Usage/Examples
+
+```javascript
+import Component from 'my-project'
+
+function App() {
+  return <Component />
+}
+```
+
